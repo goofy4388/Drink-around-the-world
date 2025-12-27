@@ -57,7 +57,7 @@ body{
   border:1px solid var(--border);
   box-shadow: var(--shadow);
 }
-.brandTitle{font-weight:800; letter-spacing:.3px}
+.brandTitle{font-weight:900; letter-spacing:.3px}
 .brandSub{font-size:13px;color:var(--muted)}
 .topActions{display:flex; gap:10px; flex-wrap:wrap}
 
@@ -73,7 +73,9 @@ body{
   backdrop-filter: blur(12px);
 }
 .panelHeader h1{margin:0 0 6px;font-size:28px}
-.panelHeader p{margin:0 0 14px;color:var(--muted)}
+.panelHeader p{margin:0 0 8px;color:var(--muted)}
+.tiny{font-size:12px}
+.muted{color:rgba(255,255,255,.72)}
 
 .tabs{display:flex; gap:10px; flex-wrap:wrap; margin:8px 0 14px}
 .tab{
@@ -83,7 +85,7 @@ body{
   padding:10px 14px;
   border-radius:999px;
   cursor:pointer;
-  font-weight:700;
+  font-weight:900;
 }
 .tab.active{
   background:rgba(255,255,255,.22);
@@ -99,7 +101,7 @@ body{
 }
 .field{display:flex; flex-direction:column; gap:6px; min-width:150px}
 .field.grow{flex:1; min-width:240px}
-label{font-size:12px; color:var(--muted); font-weight:700; letter-spacing:.3px}
+label{font-size:12px; color:var(--muted); font-weight:900; letter-spacing:.3px}
 select,input{
   padding:12px 12px;
   border-radius:14px;
@@ -109,6 +111,21 @@ select,input{
   outline:none;
 }
 input::placeholder{color:rgba(255,255,255,.55)}
+
+.completionBar{
+  margin-top:12px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:16px;
+}
+.completionItem{font-weight:900; color:rgba(255,255,255,.92)}
+.completionItem span{color:rgba(255,255,255,.78); font-weight:900}
 
 .view{display:none; padding:14px 2px 0}
 .view.active{display:block}
@@ -129,7 +146,7 @@ input::placeholder{color:rgba(255,255,255,.55)}
   box-shadow: 0 10px 26px rgba(0,0,0,.16);
 }
 .cardTop{display:flex; justify-content:space-between; align-items:flex-start; gap:10px}
-.drinkName{font-size:18px; font-weight:900}
+.drinkName{font-size:18px; font-weight:950}
 .drinkMeta{font-size:12px; color:var(--muted); margin-top:2px}
 .starBtn{
   border:1px solid var(--border);
@@ -150,13 +167,13 @@ input::placeholder{color:rgba(255,255,255,.55)}
   border:1px solid rgba(255,255,255,.2);
   background:rgba(0,0,0,.18);
   color:rgba(255,255,255,.92);
-  font-weight:800;
+  font-weight:900;
 }
 .hintRow{font-size:13px; color:rgba(255,255,255,.88)}
-.hintLabel{color:var(--muted); font-weight:800; margin-right:6px}
+.hintLabel{color:var(--muted); font-weight:900; margin-right:6px}
 
 .cardBottom{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:12px}
-.checkWrap{display:flex; gap:10px; align-items:center; font-weight:800}
+.checkWrap{display:flex; gap:10px; align-items:center; font-weight:900}
 .checkWrap input{width:18px; height:18px}
 
 .photoPreviewWrap{
@@ -179,7 +196,7 @@ input::placeholder{color:rgba(255,255,255,.55)}
   border:1px solid rgba(255,255,255,.22);
   background:rgba(255,255,255,.16);
   color:var(--text);
-  font-weight:900;
+  font-weight:950;
   cursor:pointer;
 }
 .btn:hover{background:rgba(255,255,255,.22)}
@@ -212,13 +229,6 @@ input::placeholder{color:rgba(255,255,255,.55)}
 .footer{
   padding:10px 16px 20px;
   color:rgba(255,255,255,.8);
-  font-weight:800;
+  font-weight:900;
   text-align:center;
-}
-.intro{
-  position:fixed; inset:0;
-  display:grid; place-items:center;
-  background:rgba(0,0,0,.60);
-  backdrop-filter: blur(12px);
-  z-index:999;
 }
