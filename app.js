@@ -11,166 +11,93 @@ const STORAGE_KEY = "pdd_state_v1";
 * Use placeholders + user uploads.
 */
 const DRINKS = [
-// ======================
-// EPCOT — MEXICO
-// ======================
-{ id:"ep-mex-001", park:"EPCOT", area:"Mexico", name:"Avocado Margarita", location:"La Cava del Tequila", type:"Cocktail", tags:["iconic","creamy","fan-favorite"] },
-{ id:"ep-mex-002", park:"EPCOT", area:"Mexico", name:"Cucumber Margarita (style)", location:"La Cava del Tequila", type:"Cocktail", tags:["fresh","bright"] },
-{ id:"ep-mex-003", park:"EPCOT", area:"Mexico", name:"Mezcal Margarita (style)", location:"La Cava del Tequila", type:"Cocktail", tags:["smoky","strong"] },
-{ id:"ep-mex-004", park:"EPCOT", area:"Mexico", name:"Classic Margarita (on the rocks)", location:"La Cava del Tequila", type:"Cocktail", tags:["classic"] },
-{ id:"ep-mex-005", park:"EPCOT", area:"Mexico", name:"Frozen Margarita (classic)", location:"Outdoor Margarita Bar", type:"Frozen", tags:["classic","refreshing"] },
-{ id:"ep-mex-006", park:"EPCOT", area:"Mexico", name:"Mango Margarita (frozen)", location:"Outdoor Margarita Bar", type:"Frozen", tags:["sweet","tropical"] },
-{ id:"ep-mex-007", park:"EPCOT", area:"Mexico", name:"Strawberry Margarita (frozen)", location:"Outdoor Margarita Bar", type:"Frozen", tags:["sweet"] },
-{ id:"ep-mex-008", park:"EPCOT", area:"Mexico", name:"Paloma (style)", location:"Mexico Bar", type:"Cocktail", tags:["grapefruit","crisp"] },
-{ id:"ep-mex-009", park:"EPCOT", area:"Mexico", name:"Tequila Flight (style)", location:"La Cava del Tequila", type:"Wine/Spirits", tags:["tasting","strong"] },
-{ id:"ep-mex-010", park:"EPCOT", area:"Mexico", name:"Michelada (style)", location:"Mexico Beer Cart", type:"Beer", tags:["spicy","savory"] },
+const DRINKS = [
+  // ======================
+  // EPCOT — MEXICO (La Cava del Tequila)
+  // ======================
+  { id:"ep-mex-001", park:"EPCOT", area:"Mexico", name:"Avocado Margarita", location:"La Cava del Tequila", type:"Cocktail", tags:["signature","world-famous","must-try"] }, //  [oai_citation:1‡Walt Disney World](https://disneyworld.disney.go.com/dining/epcot/cava-del-tequila/menus?utm_source=chatgpt.com)
+{ id:"ep-mex-011", park:"EPCOT", area:"Mexico", name:"Cucumber Margarita", location:"La Cava del Tequila", type:"Cocktail", tags:["signature","refreshing"] },
+{ id:"ep-mex-012", park:"EPCOT", area:"Mexico", name:"Mango Fire Margarita", location:"La Cava del Tequila", type:"Cocktail", tags:["signature","spicy","sweet"] },
+{ id:"ep-mex-013", park:"EPCOT", area:"Mexico", name:"Tequila Flight", location:"La Cava del Tequila", type:"Wine/Spirits", tags:["signature","tasting"] },
+{ id:"ep-mex-014", park:"EPCOT", area:"Mexico", name:"Blood Orange Margarita", location:"La Cava del Tequila", type:"Cocktail", tags:["signature","citrus"] },
+{ id:"ep-mex-015", park:"EPCOT", area:"Mexico", name:"Classic Frozen Margarita", location:"Mexico Margarita Bar", type:"Frozen", tags:["iconic","must-try"] },
+{ id:"ep-mex-016", park:"EPCOT", area:"Mexico", name:"Strawberry Margarita", location:"Mexico Margarita Bar", type:"Frozen", tags:["sweet","fan-favorite"] },
+  // ======================
+  // EPCOT — NORWAY (Kringla Bakeri og Kafe)
+  // ======================
+  { id:"ep-nor-001", park:"EPCOT", area:"Norway", name:"Frozen Viking Coffee", location:"Kringla Bakeri og Kafe", type:"Cocktail", tags:["signature","coffee","fan-favorite"] }, //  [oai_citation:2‡the disney food blog](https://www.disneyfoodblog.com/2025/12/18/review-this-bakery-at-epcot-is-always-busy-and-for-good-reason/?utm_source=chatgpt.com)
+{ id:"ep-nor-006", park:"EPCOT", area:"Norway", name:"Frozen Viking Coffee", location:"Kringla Bakeri og Kafe", type:"Cocktail", tags:["signature","coffee","iconic"] },
+{ id:"ep-nor-007", park:"EPCOT", area:"Norway", name:"Aquavit Cocktail", location:"Norway Pavilion Bar", type:"Cocktail", tags:["signature","herbal"] },
+{ id:"ep-nor-008", park:"EPCOT", area:"Norway", name:"Norwegian Beer", location:"Norway Beer Cart", type:"Beer", tags:["classic","crisp"] },
+{ id:"ep-nor-009", park:"EPCOT", area:"Norway", name:"Frozen Apple Cider (Spiked)", location:"Norway Pavilion", type:"Frozen", tags:["seasonal","sweet"] },
+  // ======================
+  // EPCOT — CHINA (Joy of Tea — official menu items)
+  // ======================
+  { id:"ep-chn-001", park:"EPCOT", area:"China", name:"Tipsy Ducks in Love", location:"Joy of Tea", type:"Cocktail", tags:["signature","coffee","iconic"] }, //  [oai_citation:3‡Walt Disney World](https://disneyworld.disney.go.com/dining/epcot/joy-of-tea/menus?utm_source=chatgpt.com)
+  { id:"ep-chn-002", park:"EPCOT", area:"China", name:"Kung Fu Punch", location:"Joy of Tea", type:"Cocktail", tags:["signature","fruity"] }, //  [oai_citation:4‡Walt Disney World](https://disneyworld.disney.go.com/dining/epcot/joy-of-tea/menus?utm_source=chatgpt.com)
+  { id:"ep-chn-003", park:"EPCOT", area:"China", name:"Dragon Butterfly", location:"Joy of Tea", type:"Cocktail", tags:["signature","boba","photo-worthy"] }, //  [oai_citation:5‡Walt Disney World](https://disneyworld.disney.go.com/dining/epcot/joy-of-tea/menus?utm_source=chatgpt.com)
+  { id:"ep-chn-004", park:"EPCOT", area:"China", name:"Dragon Blossom (Draft)", location:"Joy of Tea", type:"Beer", tags:["signature","honey","tea-notes"] }, //  [oai_citation:6‡Walt Disney World](https://disneyworld.disney.go.com/dining/epcot/joy-of-tea/menus?utm_source=chatgpt.com)
 
-// ======================
-// EPCOT — NORWAY
-// ======================
-{ id:"ep-nor-001", park:"EPCOT", area:"Norway", name:"Viking Coffee", location:"Kringla Bakeri", type:"Cocktail", tags:["coffee","strong"] },
-{ id:"ep-nor-002", park:"EPCOT", area:"Norway", name:"Frozen Apple Cider (spiked style)", location:"Norway Outdoor Bar", type:"Frozen", tags:["sweet","seasonal"] },
-{ id:"ep-nor-003", park:"EPCOT", area:"Norway", name:"Norwegian Beer (lager style)", location:"Norway Beer Cart", type:"Beer", tags:["crisp"] },
-{ id:"ep-nor-004", park:"EPCOT", area:"Norway", name:"Aquavit Cocktail (style)", location:"Norway Bar", type:"Cocktail", tags:["herbal","unique"] },
-{ id:"ep-nor-005", park:"EPCOT", area:"Norway", name:"Sparkling Wine (style)", location:"Norway Bar", type:"Wine/Spirits", tags:["bubbly"] },
+  // ======================
+  // EPCOT — GERMANY (Grapefruit Beer is the “must-try”)
+  // ======================
+  { id:"ep-ger-001", park:"EPCOT", area:"Germany", name:"Schöfferhofer Pink Grapefruit Hefeweizen (Grapefruit Beer)", location:"Sommerfest / Germany Beer Cart", type:"Beer", tags:["signature","fan-favorite","citrus"] }, //  [oai_citation:7‡the disney food blog](https://www.disneyfoodblog.com/2023/02/14/epcots-grapefruit-beer-the-must-try-drink-in-disney-world/?utm_source=chatgpt.com)
+{ id:"ep-ger-010", park:"EPCOT", area:"Germany", name:"Grapefruit Beer", location:"Sommerfest", type:"Beer", tags:["iconic","fan-favorite"] },
+{ id:"ep-ger-011", park:"EPCOT", area:"Germany", name:"German Beer Flight", location:"Biergarten", type:"Beer", tags:["signature","tasting"] },
+{ id:"ep-ger-012", park:"EPCOT", area:"Germany", name:"Hefeweizen", location:"Germany Beer Cart", type:"Beer", tags:["classic"] },
+{ id:"ep-ger-013", park:"EPCOT", area:"Germany", name:"Pilsner", location:"Germany Beer Cart", type:"Beer", tags:["crisp"] },
+{ id:"ep-ger-014", park:"EPCOT", area:"Germany", name:"Apple Schnapps", location:"Germany Pavilion", type:"Wine/Spirits", tags:["signature","strong"] },
+  // ======================
+  // EPCOT — ITALY (Tutto Gusto menu — official)
+  // ======================
+  { id:"ep-ita-001", park:"EPCOT", area:"Italy", name:"Italian Margarita", location:"Tutto Gusto Wine Cellar", type:"Cocktail", tags:["signature","limoncello"] }, //  [oai_citation:8‡Walt Disney World](https://disneyworld.disney.go.com/dining/epcot/tutto-gusto-wine-cellar/menus?utm_source=chatgpt.com)
+  { id:"ep-ita-002", park:"EPCOT", area:"Italy", name:"Aperol Spritz", location:"Tutto Gusto Wine Cellar", type:"Wine/Spirits", tags:["signature","bubbly","light"] }, //  [oai_citation:9‡Walt Disney World](https://disneyworld.disney.go.com/dining/epcot/tutto-gusto-wine-cellar/menus?utm_source=chatgpt.com)
+  { id:"ep-ita-003", park:"EPCOT", area:"Italy", name:"Negroni", location:"Tutto Gusto Wine Cellar", type:"Cocktail", tags:["signature","classic","bitter"] }, //  [oai_citation:10‡Walt Disney World](https://disneyworld.disney.go.com/dining/epcot/tutto-gusto-wine-cellar/menus?utm_source=chatgpt.com)
+  { id:"ep-ita-004", park:"EPCOT", area:"Italy", name:"Italian Martini", location:"Tutto Gusto Wine Cellar", type:"Cocktail", tags:["signature","citrus"] }, //  [oai_citation:11‡Walt Disney World](https://disneyworld.disney.go.com/dining/epcot/tutto-gusto-wine-cellar/menus?utm_source=chatgpt.com)
+  { id:"ep-ita-005", park:"EPCOT", area:"Italy", name:"Espresso Martini", location:"Tutto Gusto Wine Cellar", type:"Cocktail", tags:["signature","coffee"] }, //  [oai_citation:12‡Walt Disney World](https://disneyworld.disney.go.com/dining/epcot/tutto-gusto-wine-cellar/menus?utm_source=chatgpt.com)
 
-// ======================
-// EPCOT — CHINA
-// ======================
-{ id:"ep-chn-001", park:"EPCOT", area:"China", name:"Tipsy Ducks in Love", location:"Joy of Tea", type:"Cocktail", tags:["iconic","coffee","tea"] },
-{ id:"ep-chn-002", park:"EPCOT", area:"China", name:"Kung Fu Punch (style)", location:"Joy of Tea", type:"Cocktail", tags:["sweet","tropical"] },
-{ id:"ep-chn-003", park:"EPCOT", area:"China", name:"Canto Loopy (style)", location:"Joy of Tea", type:"Frozen", tags:["tropical","fun"] },
-{ id:"ep-chn-004", park:"EPCOT", area:"China", name:"Plum Wine (style)", location:"China Bar", type:"Wine/Spirits", tags:["sweet","smooth"] },
-{ id:"ep-chn-005", park:"EPCOT", area:"China", name:"Tsingtao Beer", location:"China Beer Cart", type:"Beer", tags:["classic","crisp"] },
-{ id:"ep-chn-006", park:"EPCOT", area:"China", name:"Lychee Cocktail (style)", location:"China Bar", type:"Cocktail", tags:["fruity"] },
-{ id:"ep-chn-007", park:"EPCOT", area:"China", name:"Peach Oolong Cocktail (style)", location:"Joy of Tea", type:"Cocktail", tags:["tea","light"] },
-{ id:"ep-chn-008", park:"EPCOT", area:"China", name:"Mango Bubble Tea (boozy style)", location:"Joy of Tea", type:"Cocktail", tags:["sweet","dessert"] },
+  // ======================
+  // EPCOT — JAPAN (Garden House Sake / kiosk menu listings)
+  // ======================
+  { id:"ep-jpn-001", park:"EPCOT", area:"Japan", name:"Violet Sake", location:"Garden House Sake", type:"Wine/Spirits", tags:["signature","legendary","photo-worthy"] }, //  [oai_citation:13‡AllEars.Net](https://allears.net/dining/menu/garden-house/all-day/?utm_source=chatgpt.com)
+  { id:"ep-jpn-002", park:"EPCOT", area:"Japan", name:"Tokyo Sunset", location:"Garden House Sake", type:"Cocktail", tags:["signature","tropical","fan-favorite"] }, //  [oai_citation:14‡AllEars.Net](https://allears.net/dining/menu/garden-house/all-day/?utm_source=chatgpt.com)
+  { id:"ep-jpn-003", park:"EPCOT", area:"Japan", name:"Kirin Frozen Draft", location:"Garden House Sake", type:"Beer", tags:["signature","frozen-beer"] }, //  [oai_citation:15‡AllEars.Net](https://allears.net/dining/menu/garden-house/all-day/?utm_source=chatgpt.com)
+  { id:"ep-jpn-004", park:"EPCOT", area:"Japan", name:"Sake Flight", location:"Garden House Sake", type:"Wine/Spirits", tags:["signature","tasting"] }, //  [oai_citation:16‡Touring Plans](https://touringplans.com/epcot/dining/garden-house-sake/menus/all-day-menu?utm_source=chatgpt.com)
+  { id:"ep-jpn-005", park:"EPCOT", area:"Japan", name:"Plum Wine", location:"Garden House Sake", type:"Wine/Spirits", tags:["signature","sweet"] }, //  [oai_citation:17‡AllEars.Net](https://allears.net/dining/menu/garden-house/all-day/?utm_source=chatgpt.com)
 
-// ======================
-// EPCOT — GERMANY
-// ======================
-{ id:"ep-ger-001", park:"EPCOT", area:"Germany", name:"Grapefruit Beer (radler style)", location:"Germany Beer Cart", type:"Beer", tags:["fan-favorite","citrus"] },
-{ id:"ep-ger-002", park:"EPCOT", area:"Germany", name:"Pilsner (style)", location:"Germany Beer Cart", type:"Beer", tags:["crisp"] },
-{ id:"ep-ger-003", park:"EPCOT", area:"Germany", name:"Hefeweizen (style)", location:"Germany Beer Cart", type:"Beer", tags:["wheat","smooth"] },
-{ id:"ep-ger-004", park:"EPCOT", area:"Germany", name:"Dunkel (style)", location:"Germany Beer Cart", type:"Beer", tags:["malty"] },
-{ id:"ep-ger-005", park:"EPCOT", area:"Germany", name:"German Beer Flight", location:"Biergarten", type:"Beer", tags:["tasting"] },
-{ id:"ep-ger-006", park:"EPCOT", area:"Germany", name:"Riesling (style)", location:"Germany Wine Cart", type:"Wine/Spirits", tags:["white","crisp"] },
-{ id:"ep-ger-007", park:"EPCOT", area:"Germany", name:"Apple Schnapps (style)", location:"Germany Bar", type:"Wine/Spirits", tags:["strong","sweet"] },
-{ id:"ep-ger-008", park:"EPCOT", area:"Germany", name:"German Margarita (style)", location:"Germany Bar", type:"Cocktail", tags:["twist","citrus"] },
-
-// ======================
-// EPCOT — ITALY
-// ======================
-{ id:"ep-ita-001", park:"EPCOT", area:"Italy", name:"Bellini (style)", location:"Italy Bar", type:"Wine/Spirits", tags:["bubbly","peach"] },
-{ id:"ep-ita-002", park:"EPCOT", area:"Italy", name:"Limoncello Cocktail (style)", location:"Italy Bar", type:"Cocktail", tags:["citrus","bright"] },
-{ id:"ep-ita-003", park:"EPCOT", area:"Italy", name:"Negroni (classic)", location:"Italy Bar", type:"Cocktail", tags:["bitter","classic"] },
-{ id:"ep-ita-004", park:"EPCOT", area:"Italy", name:"Aperol Spritz (style)", location:"Italy Bar", type:"Wine/Spirits", tags:["bubbly","light"] },
-{ id:"ep-ita-005", park:"EPCOT", area:"Italy", name:"Prosecco (style)", location:"Italy Bar", type:"Wine/Spirits", tags:["bubbly"] },
-{ id:"ep-ita-006", park:"EPCOT", area:"Italy", name:"Chianti (style)", location:"Italy Bar", type:"Wine/Spirits", tags:["red","classic"] },
-{ id:"ep-ita-007", park:"EPCOT", area:"Italy", name:"Italian Margarita (style)", location:"Italy Bar", type:"Cocktail", tags:["twist","orange"] },
-{ id:"ep-ita-008", park:"EPCOT", area:"Italy", name:"Limoncello Shot (style)", location:"Italy Bar", type:"Wine/Spirits", tags:["strong","lemon"] },
-
-// ======================
-// EPCOT — AMERICAN ADVENTURE (USA)
-// ======================
-{ id:"ep-usa-001", park:"EPCOT", area:"USA", name:"Bourbon Lemonade (style)", location:"USA Outdoor Bar", type:"Cocktail", tags:["refreshing"] },
-{ id:"ep-usa-002", park:"EPCOT", area:"USA", name:"Whiskey Sour (style)", location:"USA Outdoor Bar", type:"Cocktail", tags:["classic"] },
-{ id:"ep-usa-003", park:"EPCOT", area:"USA", name:"Frozen Bourbon Slush (style)", location:"USA Booth/Cart", type:"Frozen", tags:["sweet","strong"] },
-{ id:"ep-usa-004", park:"EPCOT", area:"USA", name:"Hard Cider (style)", location:"USA Beer Cart", type:"Beer", tags:["crisp"] },
-{ id:"ep-usa-005", park:"EPCOT", area:"USA", name:"Craft IPA (style)", location:"USA Beer Cart", type:"Beer", tags:["hoppy"] },
-{ id:"ep-usa-006", park:"EPCOT", area:"USA", name:"Classic Lager (style)", location:"USA Beer Cart", type:"Beer", tags:["easy"] },
-{ id:"ep-usa-007", park:"EPCOT", area:"USA", name:"Sweet Tea Cocktail (style)", location:"USA Outdoor Bar", type:"Cocktail", tags:["southern","sweet"] },
-{ id:"ep-usa-008", park:"EPCOT", area:"USA", name:"Moonshine Cocktail (style)", location:"USA Outdoor Bar", type:"Cocktail", tags:["strong"] },
-
-// ======================
-// EPCOT — JAPAN
-// ======================
-{ id:"ep-jpn-001", park:"EPCOT", area:"Japan", name:"Tokyo Sunset (style)", location:"Japan Bar", type:"Cocktail", tags:["iconic","fruity"] },
-{ id:"ep-jpn-002", park:"EPCOT", area:"Japan", name:"Yuzu Cocktail (style)", location:"Japan Bar", type:"Cocktail", tags:["citrus","bright"] },
-{ id:"ep-jpn-003", park:"EPCOT", area:"Japan", name:"Sake Flight (style)", location:"Sake Bar", type:"Wine/Spirits", tags:["tasting","smooth"] },
-{ id:"ep-jpn-004", park:"EPCOT", area:"Japan", name:"Junmai Sake (style)", location:"Sake Bar", type:"Wine/Spirits", tags:["classic"] },
-{ id:"ep-jpn-005", park:"EPCOT", area:"Japan", name:"Plum Wine (style)", location:"Japan Bar", type:"Wine/Spirits", tags:["sweet"] },
-{ id:"ep-jpn-006", park:"EPCOT", area:"Japan", name:"Japanese Beer (lager style)", location:"Japan Beer Cart", type:"Beer", tags:["crisp"] },
-{ id:"ep-jpn-007", park:"EPCOT", area:"Japan", name:"Shōchū Highball (style)", location:"Japan Bar", type:"Cocktail", tags:["light","crisp"] },
-{ id:"ep-jpn-008", park:"EPCOT", area:"Japan", name:"Matcha Cocktail (style)", location:"Japan Bar", type:"Cocktail", tags:["tea","unique"] },
-{ id:"ep-jpn-009", park:"EPCOT", area:"Japan", name:"Sake Cocktail (style)", location:"Japan Bar", type:"Cocktail", tags:["smooth"] },
-{ id:"ep-jpn-010", park:"EPCOT", area:"Japan", name:"Yuzu Lemonade (spiked style)", location:"Japan Outdoor Kiosk", type:"Cocktail", tags:["refreshing"] },
-
-// ======================
-// EPCOT — MOROCCO
-// ======================
-{ id:"ep-mor-001", park:"EPCOT", area:"Morocco", name:"Moroccan Mule (style)", location:"Morocco Bar", type:"Cocktail", tags:["ginger","crisp"] },
-{ id:"ep-mor-002", park:"EPCOT", area:"Morocco", name:"Spiked Mint Tea (style)", location:"Morocco Bar", type:"Cocktail", tags:["mint","refreshing"] },
-{ id:"ep-mor-003", park:"EPCOT", area:"Morocco", name:"Sangria (style)", location:"Morocco Bar", type:"Wine/Spirits", tags:["fruity"] },
-{ id:"ep-mor-004", park:"EPCOT", area:"Morocco", name:"Citrus Cocktail (style)", location:"Morocco Bar", type:"Cocktail", tags:["bright"] },
-{ id:"ep-mor-005", park:"EPCOT", area:"Morocco", name:"Moroccan Red Wine (style)", location:"Morocco Bar", type:"Wine/Spirits", tags:["red"] },
-{ id:"ep-mor-006", park:"EPCOT", area:"Morocco", name:"Moroccan White Wine (style)", location:"Morocco Bar", type:"Wine/Spirits", tags:["white"] },
-
-// ======================
-// EPCOT — FRANCE
-// ======================
-{ id:"ep-fra-001", park:"EPCOT", area:"France", name:"Orange Slush", location:"Les Vins des Chefs de France", type:"Frozen", tags:["iconic","fan-favorite"] },
-{ id:"ep-fra-002", park:"EPCOT", area:"France", name:"Grand Marnier Orange Slush", location:"Les Vins des Chefs de France", type:"Frozen", tags:["iconic","fan-favorite"] },
-{ id:"ep-fra-003", park:"EPCOT", area:"France", name:"Citron Slush (style)", location:"Les Vins des Chefs de France", type:"Frozen", tags:["lemon","bright"] },
-{ id:"ep-fra-004", park:"EPCOT", area:"France", name:"Kir Royal (style)", location:"France Bar", type:"Wine/Spirits", tags:["bubbly","classic"] },
-{ id:"ep-fra-005", park:"EPCOT", area:"France", name:"Champagne (style)", location:"France Bar", type:"Wine/Spirits", tags:["bubbly"] },
-{ id:"ep-fra-006", park:"EPCOT", area:"France", name:"French Rosé (style)", location:"France Bar", type:"Wine/Spirits", tags:["rosé"] },
-{ id:"ep-fra-007", park:"EPCOT", area:"France", name:"French Red Wine (style)", location:"France Bar", type:"Wine/Spirits", tags:["red"] },
-{ id:"ep-fra-008", park:"EPCOT", area:"France", name:"French White Wine (style)", location:"France Bar", type:"Wine/Spirits", tags:["white"] },
-
-// ======================
-// EPCOT — UNITED KINGDOM
-// ======================
-{ id:"ep-uk-001", park:"EPCOT", area:"UK", name:"Snake Bite", location:"Rose & Crown Pub", type:"Beer", tags:["iconic","pub"] },
-{ id:"ep-uk-002", park:"EPCOT", area:"UK", name:"Shandy (style)", location:"Rose & Crown Pub", type:"Beer", tags:["light","citrus"] },
-{ id:"ep-uk-003", park:"EPCOT", area:"UK", name:"Half & Half (style)", location:"Rose & Crown Pub", type:"Beer", tags:["classic"] },
-{ id:"ep-uk-004", park:"EPCOT", area:"UK", name:"Black Velvet (style)", location:"Rose & Crown Pub", type:"Beer", tags:["classic"] },
-{ id:"ep-uk-005", park:"EPCOT", area:"UK", name:"Cider & Blackcurrant (style)", location:"Rose & Crown Pub", type:"Beer", tags:["sweet","pub"] },
-{ id:"ep-uk-006", park:"EPCOT", area:"UK", name:"Gin & Tonic (classic)", location:"UK Bar", type:"Cocktail", tags:["classic","crisp"] },
-{ id:"ep-uk-007", park:"EPCOT", area:"UK", name:"Pimm’s Cup (style)", location:"UK Bar", type:"Cocktail", tags:["refreshing","fruity"] },
-{ id:"ep-uk-008", park:"EPCOT", area:"UK", name:"English Ale (style)", location:"UK Pub", type:"Beer", tags:["malty"] },
-{ id:"ep-uk-009", park:"EPCOT", area:"UK", name:"Irish Stout (style)", location:"UK Pub", type:"Beer", tags:["dark"] },
-{ id:"ep-uk-010", park:"EPCOT", area:"UK", name:"Scotch Flight (style)", location:"Rose & Crown Pub", type:"Wine/Spirits", tags:["tasting","strong"] },
-
-// ======================
-// EPCOT — CANADA
-// ======================
-{ id:"ep-can-001", park:"EPCOT", area:"Canada", name:"Canadian Beer Flight (style)", location:"Canada Bar", type:"Beer", tags:["tasting"] },
-{ id:"ep-can-002", park:"EPCOT", area:"Canada", name:"Maple Bourbon Smash", location:"Canada Bar", type:"Cocktail", tags:["bourbon","sweet"] },
-{ id:"ep-can-003", park:"EPCOT", area:"Canada", name:"Ice Wine (style)", location:"Canada Bar", type:"Wine/Spirits", tags:["sweet"] },
-{ id:"ep-can-004", park:"EPCOT", area:"Canada", name:"Canadian Lager (style)", location:"Canada Beer Cart", type:"Beer", tags:["crisp"] },
-{ id:"ep-can-005", park:"EPCOT", area:"Canada", name:"Caesar (style)", location:"Canada Bar", type:"Cocktail", tags:["savory","classic"] },
-
-// ======================
-// EPCOT — FESTIVAL / SEASONAL BOOTHS (useful + realistic)
-// ======================
-{ id:"ep-fes-001", park:"EPCOT", area:"Festival Booth (Seasonal)", name:"Frozen Cocktail (seasonal)", location:"Festival Booth", type:"Frozen", tags:["seasonal"] },
-{ id:"ep-fes-002", park:"EPCOT", area:"Festival Booth (Seasonal)", name:"Signature Sangria (seasonal)", location:"Festival Booth", type:"Wine/Spirits", tags:["seasonal","fruity"] },
-{ id:"ep-fes-003", park:"EPCOT", area:"Festival Booth (Seasonal)", name:"Craft Beer (seasonal)", location:"Festival Booth", type:"Beer", tags:["seasonal"] },
-{ id:"ep-fes-004", park:"EPCOT", area:"Festival Booth (Seasonal)", name:"Cocktail Flight (seasonal)", location:"Festival Booth", type:"Cocktail", tags:["seasonal","tasting"] },
-{ id:"ep-fes-005", park:"EPCOT", area:"Festival Booth (Seasonal)", name:"Hard Seltzer (seasonal)", location:"Festival Booth", type:"Beer", tags:["seasonal","light"] },
-
-// ======================
-// EPCOT — EXTRA “COMMON” ENTRIES (fill-out for “official” feel)
-// These are common types found around World Showcase kiosks/bars.
-// ======================
-{ id:"ep-x-001", park:"EPCOT", area:"World Showcase (General)", name:"Frozen Lemonade Cocktail (style)", location:"Kiosk", type:"Frozen", tags:["refreshing"] },
-{ id:"ep-x-002", park:"EPCOT", area:"World Showcase (General)", name:"Spiked Punch (style)", location:"Kiosk", type:"Cocktail", tags:["sweet"] },
-{ id:"ep-x-003", park:"EPCOT", area:"World Showcase (General)", name:"Sparkling Wine (style)", location:"Kiosk", type:"Wine/Spirits", tags:["bubbly"] },
-{ id:"ep-x-004", park:"EPCOT", area:"World Showcase (General)", name:"Beer (local/import style)", location:"Cart", type:"Beer", tags:["easy"] },
-{ id:"ep-x-005", park:"EPCOT", area:"World Showcase (General)", name:"Wine (red/white style)", location:"Cart", type:"Wine/Spirits", tags:["classic"] },
-
-// ======================
-// EPCOT — PLACEHOLDER PAVILIONS YOU CAN EXPAND FAST
-// (Germany/Italy/Japan/France/UK/Canada above are strong; these help you “feel complete”)
-// ======================
-{ id:"ep-chn-009", park:"EPCOT", area:"China", name:"Vodka Lemon Tea (style)", location:"Joy of Tea", type:"Cocktail", tags:["tea","refreshing"] },
-{ id:"ep-ger-009", park:"EPCOT", area:"Germany", name:"Festbier (style)", location:"Germany Beer Cart", type:"Beer", tags:["seasonal"] },
-{ id:"ep-ita-009", park:"EPCOT", area:"Italy", name:"Amaro Spritz (style)", location:"Italy Bar", type:"Cocktail", tags:["bitter","classy"] },
-{ id:"ep-jpn-011", park:"EPCOT", area:"Japan", name:"Lychee Cocktail (style)", location:"Japan Bar", type:"Cocktail", tags:["fruity"] },
-{ id:"ep-fra-009", park:"EPCOT", area:"France", name:"French 75 (style)", location:"France Bar", type:"Cocktail", tags:["bubbly","classic"] },
-{ id:"ep-uk-011", park:"EPCOT", area:"UK", name:"Cider (dry style)", location:"UK Pub", type:"Beer", tags:["crisp"] },
-{ id:"ep-can-006", park:"EPCOT", area:"Canada", name:"Whiskey Cocktail (style)", location:"Canada Bar", type:"Cocktail", tags:["strong"] },
+  // ======================
+  // EPCOT — FRANCE (iconic slush)
+  // ======================
+  { id:"ep-fra-001", park:"EPCOT", area:"France", name:"Grand Marnier Orange Slush", location:"Les Vins des Chefs de France", type:"Frozen", tags:["signature","iconic","must-try"] }, //  [oai_citation:18‡the disney food blog](https://www.disneyfoodblog.com/2022/12/10/review-grand-marnier-orange-slush-at-les-vins-des-chefs-des-france-in-epcot/?utm_source=chatgpt.com)
+{ id:"ep-fra-010", park:"EPCOT", area:"France", name:"Grey Goose Citron Slush", location:"Les Vins des Chefs de France", type:"Frozen", tags:["signature","refreshing"] },
+{ id:"ep-fra-011", park:"EPCOT", area:"France", name:"Champagne Flight", location:"France Pavilion", type:"Wine/Spirits", tags:["signature","tasting"] },
+{ id:"ep-fra-012", park:"EPCOT", area:"France", name:"Kir Royale", location:"France Pavilion", type:"Wine/Spirits", tags:["classic","bubbly"] },
+{ id:"ep-fra-013", park:"EPCOT", area:"France", name:"French Rosé", location:"France Pavilion", type:"Wine/Spirits", tags:["fan-favorite"] },
+{ id:"ep-fra-014", park:"EPCOT", area:"France", name:"French 75", location:"France Pavilion", type:"Cocktail", tags:["classic","signature"] },
+  // ======================
+  // EPCOT — UNITED KINGDOM (Rose & Crown official menu)
+  // ======================
+  { id:"ep-uk-001", park:"EPCOT", area:"UK", name:"Welsh Dragon", location:"Rose & Crown", type:"Cocktail", tags:["signature","green","classic"] }, //  [oai_citation:19‡Walt Disney World](https://disneyworld.disney.go.com/dining/epcot/rose-and-crown-dining-room/menus?utm_source=chatgpt.com)
+  { id:"ep-uk-002", park:"EPCOT", area:"UK", name:"Pimm’s Cup", location:"Rose & Crown", type:"Cocktail", tags:["signature","refreshing"] }, //  [oai_citation:20‡Walt Disney World](https://disneyworld.disney.go.com/dining/epcot/rose-and-crown-dining-room/menus?utm_source=chatgpt.com)
+{ id:"ep-uk-012", park:"EPCOT", area:"UK", name:"Snake Bite", location:"Rose & Crown", type:"Beer", tags:["iconic","must-try"] },
+{ id:"ep-uk-013", park:"EPCOT", area:"UK", name:"Welsh Dragon", location:"Rose & Crown", type:"Cocktail", tags:["signature","green"] },
+{ id:"ep-uk-014", park:"EPCOT", area:"UK", name:"Pimm’s Cup", location:"Rose & Crown", type:"Cocktail", tags:["signature","refreshing"] },
+{ id:"ep-uk-015", park:"EPCOT", area:"UK", name:"Black & Tan", location:"Rose & Crown", type:"Beer", tags:["classic"] },
+{ id:"ep-uk-016", park:"EPCOT", area:"UK", name:"Cider & Blackcurrant", location:"Rose & Crown", type:"Beer", tags:["sweet","fan-favorite"] },
+  // ======================
+  // EPCOT — CANADA (Popcorn in Canada official menu)
+  // ======================
+  { id:"ep-can-001", park:"EPCOT", area:"Canada", name:"Ottawa Apple", location:"Popcorn in Canada", type:"Cocktail", tags:["signature","maple","must-try"] }, //  [oai_citation:21‡Walt Disney World](https://disneyworld.disney.go.com/dining/epcot/popcorn-at-canada-pavilion/menus?utm_source=chatgpt.com)
+{ id:"ep-can-007", park:"EPCOT", area:"Canada", name:"Ottawa Apple", location:"Popcorn in Canada", type:"Cocktail", tags:["signature","maple","fan-favorite"] },
+{ id:"ep-can-008", park:"EPCOT", area:"Canada", name:"Canadian Beer Flight", location:"Canada Pavilion", type:"Beer", tags:["signature","tasting"] },
+{ id:"ep-can-009", park:"EPCOT", area:"Canada", name:"Ice Wine", location:"Canada Pavilion", type:"Wine/Spirits", tags:["signature","sweet"] },
+{ id:"ep-can-010", park:"EPCOT", area:"Canada", name:"Crown & Coke (Canadian Whisky)", location:"Canada Pavilion", type:"Cocktail", tags:["classic"] },
+  // ======================
+  // EPCOT — MOROCCO (Spice Road Table Bar official page)
+  // ======================
+  { id:"ep-mor-001", park:"EPCOT", area:"Morocco", name:"Moroccan Mule", location:"Spice Road Table Bar", type:"Cocktail", tags:["signature","ginger","refreshing"] }, //  [oai_citation:22‡Walt Disney World](https://disneyworld.disney.go.com/dining/epcot/spice-road-table-bar/?utm_source=chatgpt.com)
+  { id:"ep-mor-002", park:"EPCOT", area:"Morocco", name:"Pomegranate Mimosa", location:"Spice Road Table Bar", type:"Wine/Spirits", tags:["signature","bubbly"] }, //  [oai_citation:23‡Walt Disney World](https://disneyworld.disney.go.com/dining/epcot/spice-road-table-bar/?utm_source=chatgpt.com)
+  { id:"ep-mor-003", park:"EPCOT", area:"Morocco", name:"Housemade Sangria", location:"Spice Road Table Bar", type:"Wine/Spirits", tags:["signature","fruity"] }, //  [oai_citation:24‡Walt Disney World](https://disneyworld.disney.go.com/dining/epcot/spice-road-table-bar/?utm_source=chatgpt.com)
 ];
 
 const PARKS = ["All Parks","EPCOT","Magic Kingdom","Hollywood Studios","Animal Kingdom","Disney Springs"];
