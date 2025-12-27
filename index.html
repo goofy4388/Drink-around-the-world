@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>World Showcase Drink Passport</title>
+  <title>Drink Around the World Passport</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -13,13 +13,12 @@
     <div class="brand">
       <div class="brandMark">🍹</div>
       <div>
-        <div class="brandTitle">World Showcase Drink Passport</div>
-        <div class="brandSub">EPCOT • Checklist • Photos • Favorites</div>
+        <div class="brandTitle">Drink Around the World Passport</div>
+        <div class="brandSub">EPCOT World Showcase • Checklist • Favorites • Photos</div>
       </div>
     </div>
 
     <div class="topActions">
-      
       <button id="btnReset" class="btn danger">Reset</button>
     </div>
   </header>
@@ -28,7 +27,8 @@
     <section class="panel">
       <div class="panelHeader">
         <h1>Welcome ✨</h1>
-        <p>Pick a country, mark what you’ve tried, save photos, and build your own drink checklist.</p>
+        <p>Browse the signature-style drinks, filter by country/type, and check off what you’ve tried.</p>
+        <p class="tiny muted">Note: menus rotate. These are curated “signature-style / fan-favorite” targets for a checklist experience.</p>
       </div>
 
       <nav class="tabs" role="tablist" aria-label="Sections">
@@ -38,7 +38,6 @@
         <button class="tab" data-tab="info" role="tab">Info</button>
       </nav>
 
-      <!-- FILTER BAR -->
       <div class="filters">
         <div class="field">
           <label>Park</label>
@@ -63,38 +62,42 @@
             <option value="Wine">Wine</option>
             <option value="Cider">Cider</option>
             <option value="Frozen">Frozen</option>
+            <option value="Spirits/Flight">Spirits/Flight</option>
+            <option value="Coffee">Coffee</option>
           </select>
         </div>
 
         <div class="field grow">
           <label>Search</label>
-          <input id="filterSearch" type="text" placeholder="Search drink name (ex: Avocado, Viking, Slush)..." />
+          <input id="filterSearch" type="text" placeholder="Search (ex: Avocado, Viking, Slush, Grapefruit)..." />
         </div>
 
         <button id="btnClearFilters" class="btn">Clear</button>
       </div>
 
-      <!-- CONTENT -->
+      <div class="completionBar">
+        <div class="completionItem"><b>Overall:</b> <span id="overallCompletion">0/0</span></div>
+        <div class="completionItem"><b>Country:</b> <span id="countryCompletion">—</span></div>
+      </div>
+
       <section id="viewBrowse" class="view active"></section>
       <section id="viewChecklist" class="view"></section>
       <section id="viewFavorites" class="view"></section>
+
       <section id="viewInfo" class="view">
         <div class="infoCard">
-          <h2>How this works</h2>
+          <h2>How it works</h2>
           <ul>
-            <li><b>Browse</b> = see drinks + filter by country/type/search.</li>
-            <li><b>Checklist</b> = same list, but focused on checking items off.</li>
-            <li><b>Favorites</b> = your starred drinks.</li>
-            <li><b>Photos</b> = “Add Photo” saves locally on this device only.</li>
-            <li><b>Backup</b> = Export/Import saves your checklist + favorites + photos.</li>
+            <li><b>Browse</b> shows the full list and lets you filter.</li>
+            <li><b>Checklist</b> is the same list—focused on checking items off.</li>
+            <li><b>Favorites</b> shows starred drinks only.</li>
+            <li><b>Photos</b> are saved on this device (local storage). Different device = different photos/checks.</li>
           </ul>
-
           <div class="note">
-            <b>Tip:</b> Menus change. If you spot a drink that isn’t currently offered, you can rename it in <code>app.js</code> easily.
+            If you want to add/rename drinks later, edit only the <code>DRINKS</code> list in <code>app.js</code>.
           </div>
-
           <div class="disclaimer">
-            This is a fan-made planner/checklist. Not affiliated with or endorsed by any theme park company.
+            Fan-made checklist. Not affiliated with or endorsed by any theme park company.
           </div>
         </div>
       </section>
@@ -126,7 +129,7 @@
         </div>
 
         <div class="hintRow">
-          <span class="hintLabel">What to ask for:</span>
+          <span class="hintLabel">Ask for:</span>
           <span class="askFor"></span>
         </div>
       </div>
