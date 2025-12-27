@@ -1,4 +1,3 @@
-const INTRO_KEY = "ws_intro_seen_v1";
 /* Phase One: EPCOT World Showcase ONLY
    - Filters work
    - Checklist saves
@@ -347,27 +346,7 @@ function renderGrid(rootEl, drinks, {mode}){
 
   rootEl.appendChild(wrap);
 }
-function setupIntro(){
-  const intro = document.getElementById("intro");
-  const btnEnter = document.getElementById("btnEnter");
 
-  const seen = localStorage.getItem(INTRO_KEY);
-  if(seen === "1"){
-    intro.classList.add("hidden");
-    return;
-  }
-
-  const closeIntro = () => {
-    intro.classList.add("hidden");
-    localStorage.setItem(INTRO_KEY, "1");
-    setStatus("Passport opened.");
-  };
-
-  btnEnter.addEventListener("click", closeIntro);
-  intro.addEventListener("click", (e) => {
-    if(e.target === intro) closeIntro();
-  });
-}
 
 function loadState(){
   try{
@@ -408,4 +387,4 @@ function fileToDataURL(file){
     r.readAsDataURL(file);
   });
 }
-setupIntro();
+
