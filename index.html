@@ -1,172 +1,250 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Park Day Drinkers — Pour Passport</title>
-<link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pour Passport — Day Drinkers</title>
+  <link rel="stylesheet" href="styles.css?v=7" />
+  <meta name="theme-color" content="#0b0c22" />
 </head>
+
 <body>
-<header class="topbar">
-<div class="brand">
-<div class="logo">🍹</div>
-<div>
-<div class="brand-title">Park Day Drinkers</div>
-<div class="brand-sub">Pour Passport • Check, Rate, Remember</div>
-</div>
-</div>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">🍹</div>
+      <div class="brand-text">
+        <div class="brand-title">Pour Passport</div>
+        <div class="brand-sub">Drink Around the World • Checklist • Photos • Reviews</div>
+      </div>
+    </div>
 
-<div class="top-actions">
-<button class="btn subtle" id="btnExport">Export Backup</button>
-<label class="btn subtle filelike">
-Import Backup
-<input type="file" id="importFile" accept="application/json" hidden />
-</label>
-<button class="btn danger" id="btnReset">Reset</button>
-</div>
-</header>
+    <div class="actions">
+      <button class="btn subtle" id="btnExportProgress">Export Progress</button>
+      <label class="btn subtle filelike">
+        Import Progress
+        <input type="file" id="importProgress" accept="application/json" hidden />
+      </label>
 
-<nav class="tabs">
-<button class="tab active" data-view="home">Home</button>
-<button class="tab" data-view="browse">Browse</button>
-<button class="tab" data-view="checklist">My Checklist</button>
-<button class="tab" data-view="favorites">Favorites</button>
-<button class="tab" data-view="about">Info</button>
-</nav>
+      <button class="btn subtle" id="btnExportDrinks">Export Drink List</button>
+      <label class="btn subtle filelike">
+        Import Drink List
+        <input type="file" id="importDrinks" accept="application/json" hidden />
+      </label>
 
-<main class="wrap">
-<!-- HOME -->
-<section id="view-home" class="view">
-<div class="hero">
-<div class="hero-glow"></div>
-<div class="hero-content">
-<div class="hero-kicker">Tonight’s mission</div>
-<h1 class="hero-title">Sip your way through the parks ✨</h1>
-<p class="hero-text">
-Check off drinks, rate them, add notes, and upload your own authentic photos.
-Everything saves on your device.
-</p>
+      <button class="btn primary" id="btnAddDrink">+ Add Drink</button>
+      <button class="btn danger" id="btnReset">Reset</button>
+    </div>
+  </header>
 
-<div class="hero-cards">
-<div class="card stat">
-<div class="stat-label">Drinks tried</div>
-<div class="stat-value" id="statTried">0</div>
-</div>
-<div class="card stat">
-<div class="stat-label">Favorites</div>
-<div class="stat-value" id="statFav">0</div>
-</div>
-<div class="card stat">
-<div class="stat-label">Avg rating</div>
-<div class="stat-value" id="statAvg">—</div>
-</div>
-</div>
+  <nav class="tabs" aria-label="Navigation">
+    <button class="tab active" data-view="home">Home</button>
+    <button class="tab" data-view="browse">Browse</button>
+    <button class="tab" data-view="checklist">Checklist</button>
+    <button class="tab" data-view="favorites">Favorites</button>
+    <button class="tab" data-view="info">Info</button>
+  </nav>
 
-<div class="hero-actions">
-<button class="btn primary" id="btnStartEpcot">Start EPCOT World Tour</button>
-<button class="btn" id="btnBrowseAll">Browse All Drinks</button>
-</div>
-</div>
-</div>
+  <main class="wrap">
+    <!-- HOME -->
+    <section class="view" id="view-home">
+      <div class="hero">
+        <div class="sparkles" aria-hidden="true"></div>
+        <div class="hero-inner">
+          <div class="kicker">Welcome to the vacation vibe ✨</div>
+          <h1>Your “Drink Around EPCOT” checklist</h1>
+          <p class="muted">
+            Track signature drinks by country, rate them, add notes, and upload your own authentic photos.
+            Everything saves automatically on your device.
+          </p>
 
-<div class="grid two">
-<div class="card">
-<h2 class="card-title">Quick filters</h2>
-<div class="chips" id="quickChips"></div>
-</div>
+          <div class="stats">
+            <div class="stat">
+              <div class="label">Drinks Loaded</div>
+              <div class="value" id="statTotal">0</div>
+            </div>
+            <div class="stat">
+              <div class="label">Tried</div>
+              <div class="value" id="statTried">0</div>
+            </div>
+            <div class="stat">
+              <div class="label">Favorites</div>
+              <div class="value" id="statFav">0</div>
+            </div>
+            <div class="stat">
+              <div class="label">Avg Rating</div>
+              <div class="value" id="statAvg">—</div>
+            </div>
+          </div>
 
-<div class="card">
-<h2 class="card-title">How photos work</h2>
-<p class="muted">
-Photos you upload are stored <b>only on this device</b> (offline-friendly).
-Export/Import backs up ratings + notes + checklist. Photos stay local.
-</p>
-<div class="note">
-Tip: for the most “official” feel, start uploading your own drink photos while you’re in the parks.
-</div>
-</div>
-</div>
-</section>
+          <div class="hero-actions">
+            <button class="btn primary" id="btnStartEpcot">Start EPCOT</button>
+            <button class="btn" id="btnBrowseAll">Browse All</button>
+          </div>
 
-<!-- BROWSE -->
-<section id="view-browse" class="view hidden">
-<div class="card">
-<div class="controls">
-<div class="control">
-<label>Park</label>
-<select id="fPark"></select>
-</div>
+          <div class="chip-row" id="quickChips"></div>
+        </div>
+      </div>
 
-<div class="control">
-<label>Area</label>
-<select id="fArea"></select>
-</div>
+      <div class="grid two">
+        <div class="card">
+          <h2 class="card-title">“Signature drinks only” mode</h2>
+          <p class="muted">
+            Use the signature toggle in Browse to show only the big-name drinks people actually hunt for.
+          </p>
+          <div class="note">
+            If a drink doesn’t have a photo, tap <b>Add Photo</b> and upload your own. Saved locally.
+          </div>
+        </div>
 
-<div class="control">
-<label>Type</label>
-<select id="fType"></select>
-</div>
+        <div class="card">
+          <h2 class="card-title">Keeping it flawless</h2>
+          <p class="muted">
+            This is built for GitHub Pages (no backend). Progress saves automatically. Import/export is real and reliable.
+          </p>
+          <div class="note">
+            If your update “doesn’t show”, hard refresh: <b>Ctrl + Shift + R</b> (Chromebook) or add <b>?v=7</b> to the URL.
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div class="control grow">
-<label>Search</label>
-<input id="fSearch" placeholder="Search drink, location, tags..." />
-</div>
-</div>
-</div>
+    <!-- BROWSE -->
+    <section class="view hidden" id="view-browse">
+      <div class="card">
+        <div class="controls">
+          <div class="control">
+            <label>Park</label>
+            <select id="fPark"></select>
+          </div>
 
-<div class="subhead">
-<div>
-<div class="subhead-title" id="resultsTitle">Browse</div>
-<div class="subhead-sub muted" id="resultsSub">0 drinks</div>
-</div>
-<div class="subhead-right">
-<button class="btn subtle" id="btnClearFilters">Clear</button>
-</div>
-</div>
+          <div class="control">
+            <label>Area</label>
+            <select id="fArea"></select>
+          </div>
 
-<div id="drinkGrid" class="drink-grid"></div>
-</section>
+          <div class="control">
+            <label>Type</label>
+            <select id="fType"></select>
+          </div>
 
-<!-- CHECKLIST -->
-<section id="view-checklist" class="view hidden">
-<div class="card">
-<h2 class="card-title">My Checklist</h2>
-<p class="muted">Everything you’ve checked off, rated, or noted — all in one place.</p>
-<div class="chips" id="checkChips"></div>
-</div>
+          <div class="control">
+            <label>Show</label>
+            <div class="toggle">
+              <input type="checkbox" id="fSignature" />
+              <span>Signature only</span>
+            </div>
+          </div>
 
-<div id="checkGrid" class="drink-grid"></div>
-</section>
+          <div class="control grow">
+            <label>Search</label>
+            <input id="fSearch" placeholder="Search drink / venue / tags…" />
+          </div>
 
-<!-- FAVORITES -->
-<section id="view-favorites" class="view hidden">
-<div class="card">
-<h2 class="card-title">Favorites</h2>
-<p class="muted">Your “must repeat” list.</p>
-</div>
-<div id="favGrid" class="drink-grid"></div>
-</section>
+          <div class="control">
+            <button class="btn subtle" id="btnClear">Clear</button>
+          </div>
+        </div>
+      </div>
 
-<!-- ABOUT -->
-<section id="view-about" class="view hidden">
-<div class="card">
-<h2 class="card-title">Info & Disclaimer</h2>
-<p class="muted">
-This is an independently created planner/tracker. Not affiliated with or endorsed by any theme park company.
-</p>
-<div class="note">
-Please drink responsibly. 21+ only. Always follow park rules and local laws.
-</div>
-<div class="note">
-Photos: upload your own authentic images. Do not copy copyrighted images from official sources or other creators.
-</div>
-</div>
-</section>
-</main>
+      <div class="subhead">
+        <div>
+          <div class="subhead-title" id="resultsTitle">Browse</div>
+          <div class="subhead-sub muted" id="resultsSub">0 drinks</div>
+        </div>
+      </div>
 
-<!-- Photo picker (one shared input) -->
-<input type="file" id="photoPicker" accept="image/*" hidden />
+      <div class="drink-grid" id="gridBrowse"></div>
+    </section>
 
-<script src="app.js"></script>
+    <!-- CHECKLIST -->
+    <section class="view hidden" id="view-checklist">
+      <div class="card">
+        <h2 class="card-title">Your Checklist</h2>
+        <p class="muted">Tried, rated, favorited, or noted drinks show up here.</p>
+        <div class="chip-row" id="checkChips"></div>
+      </div>
+      <div class="drink-grid" id="gridChecklist"></div>
+    </section>
+
+    <!-- FAVORITES -->
+    <section class="view hidden" id="view-favorites">
+      <div class="card">
+        <h2 class="card-title">Favorites</h2>
+        <p class="muted">Your must-repeat list.</p>
+      </div>
+      <div class="drink-grid" id="gridFav"></div>
+    </section>
+
+    <!-- INFO -->
+    <section class="view hidden" id="view-info">
+      <div class="card">
+        <h2 class="card-title">Info & Disclaimer</h2>
+        <p class="muted">
+          This is independently created and not affiliated with or endorsed by any theme park company.
+          Drink responsibly (21+). Only upload photos you took or have rights to use.
+        </p>
+        <div class="note">
+          Photos are stored locally on your device for speed + privacy.
+          Progress can be exported/imported as JSON anytime.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Shared photo picker -->
+  <input type="file" id="photoPicker" accept="image/*" hidden />
+
+  <!-- Add Drink Modal -->
+  <div class="modal hidden" id="modalAdd" role="dialog" aria-modal="true" aria-labelledby="addTitle">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="addTitle">Add a Drink</h3>
+        <button class="iconbtn" id="btnCloseModal" aria-label="Close">✕</button>
+      </div>
+
+      <div class="modal-grid">
+        <div class="control">
+          <label>Park</label>
+          <select id="mPark"></select>
+        </div>
+        <div class="control">
+          <label>Area</label>
+          <input id="mArea" placeholder="Mexico / France / UK…" />
+        </div>
+        <div class="control">
+          <label>Drink name</label>
+          <input id="mName" placeholder="Orange Slush…" />
+        </div>
+        <div class="control">
+          <label>Venue / Location</label>
+          <input id="mLocation" placeholder="Les Vins des Chefs…" />
+        </div>
+        <div class="control">
+          <label>Type</label>
+          <select id="mType"></select>
+        </div>
+        <div class="control">
+          <label>Tags (comma separated)</label>
+          <input id="mTags" placeholder="iconic, sweet, frozen" />
+        </div>
+        <div class="control">
+          <label>Signature?</label>
+          <div class="toggle">
+            <input type="checkbox" id="mSignature" />
+            <span>Mark as signature</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn subtle" id="btnModalCancel">Cancel</button>
+        <button class="btn primary" id="btnModalSave">Save</button>
+      </div>
+
+      <p class="tiny muted">Saved locally. Use Export Drink List to back it up.</p>
+    </div>
+  </div>
+
+  <script src="app.js?v=7"></script>
 </body>
 </html>
