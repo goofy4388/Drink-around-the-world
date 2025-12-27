@@ -213,48 +213,6 @@ function setupFilters(){
   });
 }
 
-function setupBackup(){
-  els.btnBackupExport.addEventListener("click", ()=>{
-    const blob = new Blob([JSON.stringify(state, null, 2)], {type:"application/json"});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "world-showcase-backup.json";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
-    setStatus("Backup exported.");
-  });
-
-  els.btnBackupImport.addEventListener("click", ()=>{
-    els.backupFile.click();
-  });
-
-  els.backupFile.addEventListener("change", async (e)=>{
-    const file = e.target.files?.[0];
-    if(!file) return;
-
-    try{
-      const text = await file.text();
-      const imported = JSON.parse(text);
-
-      // basic validation
-      if(!imported || typeof imported !== "object") throw new Error("Bad backup file");
-      if(!imported.tried || !imported.favs || !imported.photos) throw new Error("Backup missing fields");
-
-      state.tried = imported.tried;
-      state.favs = imported.favs;
-      state.photos = imported.photos;
-      saveState();
-      renderAll();
-      setStatus("Backup imported.");
-    }catch(err){
-      alert("Import failed. Make sure you selected a valid backup JSON file.");
-    }finally{
-      els.backupFile.value = "";
-    }
-  });
 
   els.btnReset.addEventListener("click", ()=>{
     const ok = confirm("Reset everything (checklist, favorites, photos)?");
