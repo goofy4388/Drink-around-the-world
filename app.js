@@ -158,9 +158,7 @@ const els = {
   btnClearFilters: document.getElementById("btnClearFilters"),
   statusText: document.getElementById("statusText"),
 
-  btnBackupExport: document.getElementById("btnBackupExport"),
-  btnBackupImport: document.getElementById("btnBackupImport"),
-  backupFile: document.getElementById("backupFile"),
+
   btnReset: document.getElementById("btnReset"),
 };
 
@@ -169,7 +167,6 @@ init();
 function init(){
   setupTabs();
   setupFilters();
-  setupBackup();
   renderAll();
   setStatus("Ready.");
 }
