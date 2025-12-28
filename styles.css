@@ -232,3 +232,10 @@ input::placeholder{color:rgba(255,255,255,.55)}
   font-weight:900;
   text-align:center;
 }
+.hero-image {
+  display: block;
+  max-width: 300px;
+  width: 100%;
+  margin: 20px auto;
+  border-radius: 12px;
+}
