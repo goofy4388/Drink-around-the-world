@@ -1,3 +1,50 @@
+// ===== PASSWORD GATE (Drink Around The World) =====
+// Change your password here:
+const PAGE_PASSWORD = "EPCOT2026!";
+
+document.addEventListener("DOMContentLoaded", () => {
+  const lockScreen = document.getElementById("lockScreen");
+  const input = document.getElementById("passwordInput");
+  const unlockBtn = document.getElementById("unlockBtn");
+  const clearBtn = document.getElementById("clearAccessBtn");
+  const err = document.getElementById("lockError");
+
+  // Already unlocked on this device?
+  if (localStorage.getItem("datw_unlocked") === "yes") {
+    lockScreen.style.display = "none";
+  }
+
+  function showError(on){
+    err.style.display = on ? "block" : "none";
+  }
+
+  function unlock(){
+    const val = (input.value || "").trim();
+    if (val === PAGE_PASSWORD){
+      localStorage.setItem("datw_unlocked", "yes");
+      lockScreen.style.display = "none";
+      showError(false);
+      input.value = "";
+    } else {
+      showError(true);
+      input.focus();
+      input.select();
+    }
+  }
+
+  unlockBtn.addEventListener("click", unlock);
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") unlock();
+  });
+
+  clearBtn.addEventListener("click", () => {
+    localStorage.removeItem("datw_unlocked");
+    lockScreen.style.display = "flex";
+    showError(false);
+    input.value = "";
+    input.focus();
+  });
+});
 /* Drink Around the World Passport (EPCOT World Showcase)
    - 11 countries
    - 10 signature-style drinks per country (110 total)
