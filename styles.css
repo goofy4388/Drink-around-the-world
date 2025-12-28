@@ -233,7 +233,8 @@ input::placeholder{color:rgba(255,255,255,.55)}
   text-align:center;
 }
 .hero-image{
+  display: block;
   width:60px;
   height:auto;
-  margin:6px auto;
+  margin:12px auto;
 }
