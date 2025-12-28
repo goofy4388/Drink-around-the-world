@@ -233,10 +233,7 @@ input::placeholder{color:rgba(255,255,255,.55)}
   text-align:center;
 }
 .hero-image{
-  display:block;
-  width:100%;
-  max-width:180px;   /* <-- change this number smaller/bigger */
+  width:80px;
   height:auto;
-  margin:14px auto;
-  border-radius:12px;
+  margin:8px auto;
 }
